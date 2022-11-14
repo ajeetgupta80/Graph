@@ -9,6 +9,6 @@ void init_code(){
 int main() 
 {
 	init_code();
-	cout<<"started learning tree just ed up"<<endl;
+	cout<<"not"<<endl;
 	return 0;
 }
