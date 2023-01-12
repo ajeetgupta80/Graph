@@ -1,15 +1,17 @@
 #include<iostream>
 #include<vector>
+#include<bits/stdc++.h>
+
 using namespace std;
 
 
 
-void init_code(){
-    #ifndef ONLINE_JUDGE
-    freopen("inptree.txt", "r", stdin);
-    freopen("outtree.txt", "w", stdout);
-    #endif 
-}
+// void init_code(){
+//     #ifndef ONLINE_JUDGE
+//     freopen("inptree.txt", "r", stdin);
+//     freopen("outtree.txt", "w", stdout);
+//     #endif 
+// }
 
 
 
@@ -36,6 +38,15 @@ void preorder(Node *root)
     preorder(root->left);
     preorder(root -> right);
 }
+void post_order(Node * root)
+{
+    if(root == NULL)
+        return;
+    post_order(root->left);
+    post_order(root->right);
+    cout<<(root->data)<<" ";
+
+}
 // storing data in vector
 vector<int> trav;
 vector<int> PREorder(Node * root)
@@ -53,6 +64,39 @@ vector<int> PREorder(Node * root)
 
 
 }
+void inorder(Node * root)
+{
+    if(root == NULL)
+    {
+        return ; 
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+void bfs(Node * root)
+{
+    vector<vector<int> > ans;
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty())
+    {
+        int n = q.size();
+        vector<int> level;
+        for(int i=0; i<n; ++i)
+        {
+            Node * node = q.front();
+            q.pop();
+            if(node->left !=NULL ) q.push(node->left);
+            if(node->right != NULL ) q.push(node->right);
+            level.push_back(node->data);
+        }
+        ans.push_back(level);
+    }
+ 
+
+}
 
 
 
@@ -61,7 +105,7 @@ vector<int> PREorder(Node * root)
 
 int main() 
 {
-	init_code();
+	// init_code();
 	
     struct Node * root = new Node(1);
   root -> left = new Node(2);
@@ -82,6 +126,9 @@ int main()
     {
         cout<<ans[i]<<" ";
     }cout<<endl;
+    post_order(root);
+    cout<<endl;
+    inorder(root);
     
 
 
