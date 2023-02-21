@@ -28,7 +28,7 @@ int dfs(Node* root)
 
      int r = dfs(root -> right);
      if(r == -1)
-        return -1;
+       return -1;
      
 
      if(abs(l-r)>1)
