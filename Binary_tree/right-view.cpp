@@ -17,39 +17,26 @@ struct Node
     
 };
 
-vector<int> top(Node* root)
+vector<int> v;
+void find(Node* root, int level){
+    if(root == NULL )
+     return;
+
+    if(level == v.size())
+    {
+        v.push_back(root -> data);
+    }
+
+    find(root -> right, level+1);
+    find(root -> left,level+1 );
+
+}
+
+vector<int> right(Node* root)
 {
-
-    vector<int> ans;
-     map<int,int> mp;
-     queue<pair<Node*, int>> q;
-
-     q.push({root, 0});
-     while(!q.empty())
-     {
-        auto p = q.front();
-        q.pop();
-        
-        Node* node = p.first;
-        int line = p.second;
-
-       if(mp.find(line) == mp.end())
-       {
-           mp[line] = node -> data;
-       }
-       if(node -> left)
-         q.push({node->left, line-1});
-        
-       if(node -> right)
-         q.push({node -> right, line+1});
-
-        
-     }
-     for(auto &it: mp)
-     {
-        ans.push_back(it.second);
-     }
-     return ans;
+   find(root, 0);
+   return v;
+  
 
 
 }
@@ -72,7 +59,7 @@ int main()
 
 
   vector<int> res;
-  res = top(root);
+  res = right(root);
   
 
   for(auto &it:res)
