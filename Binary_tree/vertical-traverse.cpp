@@ -2,6 +2,7 @@
 #include<vector>
 #include<bits/stdc++.h>
 using namespace std;
+// its a fucking hard question babe ---- -  -- - - -- ---------------
 
 struct Node
 {
@@ -52,6 +53,7 @@ struct Node
         vector<int> col;
         for(auto &k:p.second){
             col.insert(col.end(), k.second.begin(), k.second.end());
+        
         }
         ans.push_back(col);
      }
