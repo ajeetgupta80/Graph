@@ -3,6 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// in this question used backtracking to find the path ....................................
 
 struct Node
 {
@@ -18,52 +19,48 @@ struct Node
 };
 
 
-void find(Node* root, int level, vector<int> &v){
-    if(root == NULL )
-     return;
+ bool findpath(Node* root, vector<int> &path, int x)
+ {
+    if(!root)
+      return false;
 
-    if(level == v.size())
-    {
-        v.push_back(root -> data);
-    }
-
-    find(root -> left, level+1,v);
-    find(root -> right,level+1,v);
-
-}
-
-vector<int> right(Node* root)
-{
-    vector<int> v;
-   find(root, 0,v);
-   return v;
+    path.push_back(root->data);
+    if(root -> data == x)
+      return true;
+    
+    if(findpath(root->left, path,x) || findpath(root -> right, path, x))
+      return true;
+    
+    path.pop_back();
+    return false;
+   
+ }
   
 
 
-}
+
+
 
 
 int main() 
 {
- 
-   
 
-  struct Node* root = new Node(1);
+  struct Node * root = new Node(1);
   root -> left = new Node(2);
   root -> left -> left = new Node(4);
-  root -> left -> right = new Node(10);
-  root -> left -> left -> right = new Node(5);
-  root -> left -> left -> right -> right = new Node(6);
+  root -> left -> right = new Node(5);
+  root -> left -> right -> left = new Node(6);
+  root -> left -> right -> right = new Node(7);
   root -> right = new Node(3);
-  root -> right -> left = new Node(9);
-  root -> right -> right = new Node(10);
 
+  
+  vector<int> path;
 
-  vector<int> res;
-  res = right(root);
+  bool res;
+  res = findpath(root, path, 7);
   
 
-  for(auto &it:res)
+  for(auto &it:path)
   {
     cout<<it<<" ";
   }
