@@ -18,23 +18,9 @@ struct Node
     
 };
 
-Node* buildtre(vector<int>  &preorder, vector<int> &inorder)
-{
-     map<int,int> hash;
-     for(int i =0; i<inorder.size(); ++i)
-         hash[inorder[i]] = i;
-     
-     Node* root = tree(preorder, 0, preorder.size()-1, inorder, 0 , inorder.size()-1, hash);
-     return root;
-}
-
-Node* tree(vector<int>& preorder, int prestart, int prend, vector<int>&inorder, int instart, int inend, map<int,int> hash)
-{
-      
-}
 
 
-
+    
 
 
 
@@ -50,10 +36,7 @@ int main()
   root -> right -> right = new Node(4);
   root -> right -> right -> right = new Node(6);
 
-
-
-   vector<int> dist;
-   dist = kdistacne(root,target,k);
+  
 
 
  
